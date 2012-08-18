@@ -19,13 +19,13 @@
 
 * 指南章节安排
 	* [入门](tutorial/step0.md)
-	* [显示图片]
-	* [加载多个数据集]
-	* [创建三维视图]
-	* [使用多个视图浏览数据]
-	* [种子点交互]
-	* [交互的区域增加]
-	* [把区域增长分割结果转为曲面]
-	* [使用QmitkStdMultiWidget小部件]
-	* [完善功能]
-	* [新的交互]
+	* [显示图片](tutorial/step1.md)
+	* [加载多个数据集](tutorial/step2.md)
+	* [创建三维视图](tutorial/step3.md)
+	* [使用多个视图浏览数据](tutorial/step4.md)
+	* [种子点交互](tutorial/step5.md)
+	* [交互的区域增加](tutorial/step6.md)
+	* [把区域增长分割结果转为曲面](tutorial/step7.md)
+	* [使用QmitkStdMultiWidget小部件](tutorial/step8.md)
+	* [完善功能](tutorial/step9.md)
+	* [新的交互](tutorial/step10.md)

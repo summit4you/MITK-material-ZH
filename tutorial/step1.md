@@ -11,11 +11,11 @@ MITK 入门指南 -- 显示图片
 
 源代码分为I - V部分. 
 
-	I. 创建一个`DataTree`对象
-	II. 从文件中读取数据
-	III. 把数据对象插入至`DataTree`对象
-	IV. 创建一个窗口，并把`DataTree`对象传给窗口
-	V. 最后完成一些QT特定的初始化
+* 创建一个`DataTree`对象
+* 从文件中读取数据
+* 把数据对象插入至`DataTree`对象
+* 创建一个窗口，并把`DataTree`对象传给窗口
+* 最后完成一些QT特定的初始化
 
 	/*===================================================================
 	The Medical Imaging Interaction Toolkit (MITK)
@@ -105,4 +105,4 @@ MITK 入门指南 -- 显示图片
 	  ds = NULL;
 	}
 
-[上一节](step0.md)[下一节](step1.md)[返回](../MITK-tutorial.md)
+[上一节](step0.md)[下一节](step2.md)[返回](../MITK-tutorial.md)
