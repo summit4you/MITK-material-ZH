@@ -17,3 +17,9 @@ Author: [summit.chiu](mailto:809104518@qq.com)
 
 作者：[丘文峰](mailto:809104518@qq.com)
 
+----------
+
+当前资料：
+
+- [MITK入门指南](MITK-tutorial.md)
+
