@@ -21,5 +21,5 @@ Author: [summit.chiu](mailto:809104518@qq.com)
 
 当前资料：
 
-- [MITK入门指南](MITK-tutorial.md)
+- [MITK入门指南](blob/master/MITK-tutorial.md)
 
