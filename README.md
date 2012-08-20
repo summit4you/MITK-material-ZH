@@ -23,3 +23,4 @@ Author: [summit.chiu](mailto:809104518@qq.com)
 
 - [MITK入门指南](MITK-material-ZH/blob/master/MITK-tutorial.md)
 - [如何使用BundleGenerator创建MITK插件](MITK-material-ZH/blob/master/NewPluginPage.md)
+- [MITK与蓝莓(BlueBerry)](MITK-material-ZH/blob/master/FAQBlueBerry.md)
