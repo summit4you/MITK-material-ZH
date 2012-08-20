@@ -152,4 +152,45 @@ MITK曲面类型与VTK曲面类型的转换
 
 - [mitk::Surface::SetVtkPolyData](http://docs.mitk.org/2012.06/classmitk_1_1Surface.html#ae925c94a03896caaecf3ada7f6816c52)(vtkPolyData*, int time = 0) 
 
+> 本示例问题：若出现“Extension GL_VERSION_1_2 could not be loaded.”错误，请确认你的机器是否支持NVIDIA OPTIMUS技术，并确保当前运行时打开NVIDIA显卡。由于本示例采用QtmitkExt模块，因此，CMakeLists.txt参考如下所示修改
+
+
+----------
+
+	cmake_minimum_required(VERSION 2.8.4)
+	project(Step6)
+	
+	find_package(MITK REQUIRED)
+	
+	# Check that MITK has been build with Qt support
+	if(NOT MITK_USE_QT)
+	  message(SEND_ERROR "MITK needs to be built with MITK_USE_QT set to ON")
+	endif()
+	
+	# Check prerequisites for this application.
+	# We need the Qmitk module.
+	MITK_CHECK_MODULE(result Qmitk QmitkExt) // 本示例增加的查找项
+	if(result)
+	  message(SEND_ERROR "MITK module(s) \"${result}\" not available from the MITK build at ${MITK_DIR}")
+	endif()
+	
+	# Set-up the build system to use the Qmitk module
+	MITK_USE_MODULE(Qmitk)
+	MITK_USE_MODULE(QmitkExt) //本示例增加的模块
+	MITK_USE_MODULE(MitkExt)  //本示例增加的模块
+	
+	
+	include_directories(${ALL_INCLUDE_DIRECTORIES})
+	link_directories(${ALL_LIBRARY_DIRS})
+	
+	set(STEP6_CPP Step6RegionGrowing1.cpp Step6RegionGrowing2.cpp Step6main.cpp Step6.cpp)
+	# some files need Qt wrapping 
+	QT4_WRAP_CPP(STEP6_MOC_CPP Step6.h)
+	set(STEP6_CPP ${STEP6_CPP} ${STEP6_MOC_CPP})
+	
+	add_executable(${PROJECT_NAME} ${STEP6_CPP} QtTesting.cpp) //引入QtTesting
+	target_link_libraries(${PROJECT_NAME} ${ALL_LIBRARIES})
+
+> 为了观察程序的执行，我们使用了MITK提供的QtTesting，在控制台查看log信息。
+
 [上一节](step5.md)[下一节](step7.md)[返回](../MITK-tutorial.md)
