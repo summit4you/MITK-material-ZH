@@ -26,6 +26,6 @@
 	* [种子点交互](tutorial/step5.md)
 	* [交互式区域增长](tutorial/step6.md)
 	* [把区域增长分割结果转为曲面](tutorial/step7.md)
-	* [使用QmitkStdMultiWidget小部件](tutorial/step8.md)
+	* [使用QmitkStdMultiWidget作为主窗口](tutorial/step8.md)
 	* [完善功能](tutorial/step9.md)
 	* [新的交互](tutorial/step10.md)
