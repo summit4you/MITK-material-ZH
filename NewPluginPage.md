@@ -61,6 +61,8 @@ MITK插件生成器（BundleGenerator）是一个用于简化创建你的MITK项
 
 生成的项目是完整的可以立即通过[CMake](http://docs.mitk.org/2012.06/BlueBerry/reference/api/html/namespaceCMake.html)配置。当编译生成项目时，首先会下载所有相关的程序库（例如MITK本身）。有关项目目录的组织及使用[CMake](http://docs.mitk.org/2012.06/BlueBerry/reference/api/html/namespaceCMake.html)配置你的MITK项目，可以阅读[SetupAMITKBasedProject](http://www.mitk.org/wiki/SetupAMitkBasedProject)
 
+> 译注：为了避免重复下载编译MITK，在CMake里，把EXTERNAL_MITK_DIR指向已编译成功的MITK目录。生成并编译成功后，运行MyApp如下图所示：![运行结果图](image/newpluginpage2.jpg?raw=true)
+
 局限性
 -----
 
