@@ -1,5 +1,7 @@
 如何使用BundleGenerator创建MITK插件
 =================================
+版本：0.1  
+作者：[丘文峰](mailto:809104518@qq.com)
 
 MITK插件生成器（BundleGenerator）是一个用于简化创建你的MITK项目（可选）或是插件的命令行工具。它可以在[这里](http://www.mitk.org/wiki/Download)下载或是从已编译的MITK工程中找到。
 
