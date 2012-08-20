@@ -5,7 +5,7 @@ MITK 入门指南 -- 显示图片
 
 通过执行StartVS_release.bat可以找到指南示例。每一节都在工程项目列表中找到。第一个示例程序说明如何在一个2维视图中显示一张图。上面是程序运行的截图
 
-程序运行读入图像文件，文件位于`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`. 你若使用Visual Studio，可以右键"Step1"-project 然后选择 'Properties -> Configuration Properties -> Debugging'. 把图像文件的路径填入"Command Arguments"文本框.后续的小节都使用相同的步骤.
+程序运行读入图像文件，文件位于`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`.若你的MITK源文件中没有包括此测试数据，你可以通过[在线下载](http://mitk.org/git/?p=MITK-Data.git;a=tree)。 你若使用Visual Studio，可以右键"Step1"-project 然后选择 'Properties -> Configuration Properties -> Debugging'. 把图像文件的路径填入"Command Arguments"文本框.后续的小节都使用相同的步骤.
 
 <center>![配置程序运行命令行参数](http://docs.mitk.org/2012.06/configureVisualStudioProperties.png)</center>
 

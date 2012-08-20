@@ -5,9 +5,13 @@ MITK 入门指南 -- 创建三维视图
 
 > 译注：槽是QT信号机制的概念，是一个响应函数的代称。mapper是3D场景中的术语，它来源于舞台的背景，即展示的道具。在这里即是场景的一些设置。除此之外还会遇见术语Actor，它来源于舞台的演员。在3D场景就是指施动的类，用于根据用户交互来渲染场景。
 
-为了说明打开体绘制的区别，这里分别列出。a是默认的显示结果，b是打开体绘制的结果。
+为了说明打开体绘制的区别，这里分别列出。a是默认的显示结果，b是打开体绘制的结果。和上一节一样，要得到显示的图片效果，需要在运行程序时传入
 
-和上一节一样，要得到显示的图片效果，需要在运行程序时传入图像文件`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`和曲面文件`src/MITK/Modules/MitkExt/Testing/Data/lungs.vtk`作为参数。
+- 图像文件`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`
+
+- 曲面文件`src/MITK/Modules/MitkExt/Testing/Data/lungs.vtk`
+
+若你的MITK源文件中没有包括此测试数据，你可以通过[在线下载](http://mitk.org/git/?p=MITK-Data.git;a=tree)。
 
 * [step3.cpp](http://docs.mitk.org/2012.06/Step3_8cpp-example.html) 包含创建3维视图和打开体绘制的代码。
 

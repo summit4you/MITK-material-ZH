@@ -1,7 +1,7 @@
 MITK 入门指南 -- 交互式区域增长
 ============================
 
-本节继续前面的程序增加一个交互式的区域增长。在本节，我们将看到MITK图像类是如何访问ITK图像类的。在这个例子中，我们仅需要加载图像文件，因为曲面文件是区域增长的结果。它位于`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`。
+本节继续前面的程序增加一个交互式的区域增长。在本节，我们将看到MITK图像类是如何访问ITK图像类的。在这个例子中，我们仅需要加载图像文件，因为曲面文件是区域增长的结果。它位于`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`。若你的MITK源文件中没有包括此测试数据，你可以通过[在线下载](http://mitk.org/git/?p=MITK-Data.git;a=tree)。
 
 > [区域增长](http://en.wikipedia.org/wiki/Region_growing)是一个经典的基于灰度空间的分割算法，交互式区域增长是指可以由用户以鼠标交互方式选择空间点作为种子点进行图像分割。
 

@@ -3,7 +3,7 @@ MITK 入门指南 -- 使用多个视图浏览数据
 
 和前面两节一样，在这节中我们仍需要加载多套数据。不过现在，我们创建三个视图进行数据显示。在本节，我们使用`QmitkRenderWindow`作为3D视图，视图不进行体绘制。此外，两个视图用于数据的切片显示。这里用到`QmitkSliceWidget`,它的父类是`QmitkRenderWindow`，但是它提供滑动条用于浏览切片数据。我们创建两个`QmitkSliceWidget`的实例，一个用于横向显示(transversal)，一个用于矢状(sagittal)显示。在本节B部分，我们增加程序使得2个视图以3维空间正确的位置上显示，并且在2维视图中显示交叉线，用于反映当前的空间位置。
 
-和上一节一样，要得到结果，程序运行时需要使用两个数据，位于`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`的图像文件和`src/MITK/Modules/MitkExt/Testing/Data/lungs.vtk`的曲面文件。
+和上一节一样，要得到结果，程序运行时需要使用两个数据，位于`bin/CMakeExternals/Source/MITK-Data/Pic3D.nrrd`的图像文件和`src/MITK/Modules/MitkExt/Testing/Data/lungs.vtk`的曲面文件。若你的MITK源文件中没有包括此测试数据，你可以通过[在线下载](http://mitk.org/git/?p=MITK-Data.git;a=tree)。
 
 * [Step4.cpp](http://docs.mitk.org/2012.06/Step4_8cpp-example.html) 包含本节A部分与B部分的代码
 
