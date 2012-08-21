@@ -1,0 +1,5 @@
+set(Plugin-Name "Regiongrowing")
+set(Plugin-Version "0.1")
+set(Plugin-Vendor "Summit, GDMC")
+set(Plugin-ContactAddress "")
+set(Require-Plugin org.mitk.gui.qt.common org.mitk.gui.qt.stdmultiwidgeteditor org.mitk.gui.qt.common.legacy)

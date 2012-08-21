@@ -1,0 +1,16 @@
+/**
+  \defgroup org_gdmc_segmentation_regiongrowing org.gdmc.segmentation.regiongrowing
+  \ingroup MITKPlugins
+
+  \brief Describe your plugin here.
+  
+*/
+
+/**
+  \defgroup org_gdmc_segmentation_regiongrowing_internal Internal
+  \ingroup org_gdmc_segmentation_regiongrowing
+
+  \brief This subcategory includes the internal classes of the org.gdmc.segmentation.regiongrowing plugin. Other
+  plugins must not rely on these classes. They contain implementation details and their interface
+  may change at any time. We mean it.
+*/

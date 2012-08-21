@@ -1,0 +1,19 @@
+/**
+\bundlemainpage{org.gdmc.segmentation.regiongrowing} Regiongrowing
+
+\image html icon.xpm "Icon of Regiongrowing"
+
+Available sections:
+  - \ref org.gdmc.segmentation.regiongrowingOverview
+
+\section org.gdmc.segmentation.regiongrowingOverview
+Describe the features of your awesome plugin here
+<ul>
+<li>Increases productivity
+<li>Creates beautiful images
+<li>Generates PhD thesis
+<li>Brings world peace
+</ul>
+
+*/
+
