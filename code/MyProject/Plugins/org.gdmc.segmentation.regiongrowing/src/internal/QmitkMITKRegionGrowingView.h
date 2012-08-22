@@ -51,18 +51,24 @@ class QmitkMITKRegionGrowingView : public QmitkFunctionality
 
     virtual void CreateQtPartControl(QWidget *parent);
 
+	void UpdateLowerAndUpper();
+    
+	~QmitkMITKRegionGrowingView( );
+
   protected slots:
   
     /// \brief Called when the user clicks the GUI button
     void DoImageProcessing();
 
+	
+
   protected:
   
     virtual void SetFocus();
+    
 
     /// \brief called by QmitkFunctionality when DataManager's selection has changed
-    virtual void OnSelectionChanged( berry::IWorkbenchPart::Pointer source,
-                                     const QList<mitk::DataNode::Pointer>& nodes );
+    virtual void OnSelectionChanged( std::vector< mitk::DataNode * > );
 
     Ui::QmitkMITKRegionGrowingViewControls m_Controls;
 
@@ -72,6 +78,8 @@ class QmitkMITKRegionGrowingView : public QmitkFunctionality
 
 	QmitkPointListWidget* lstPoints;
 	QmitkStdMultiWidget* m_MultiWidget;
+
+	unsigned long m_OnPointSetAddEventObserverTag;
 	
 	// itk ´¦Àíº¯Êý
 	template < typename TPixel, unsigned int VImageDimension >

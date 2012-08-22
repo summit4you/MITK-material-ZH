@@ -228,7 +228,7 @@ CMake后编译生成应用，点击bin/start<你的应用名>_debug.bat，即能
 
 	set(Require-Plugin org.mitk.gui.qt.common.legacy org.mitk.gui.qt.stdmultiwidgeteditor)
 
-> 注意和本节之前的对比。org.mitk.gui.qt.common.legacy 并不是默认生成的插件。所以你有可能需要重新编译MITK，当CMake配置生成org.mitk.gui.qt.common.legacy后，由于MITK使用superbuild, 你需要用VC打开，必编译MITK-Config才会为org.mitk.gui.qt.common.legacy生成工程文件。
+> 注意和本节之前的对比。org.mitk.gui.qt.common.legacy 并不是默认生成的插件。所以你有可能需要重新编译MITK，当CMake配置生成org.mitk.gui.qt.common.legacy后，由于MITK使用superbuild, 你需要用VC打开，必编译MITK-Config才会为org.mitk.gui.qt.common.legacy生成工程文件。特别注意消息函数的修改，例如`virtual void OnSelectionChanged( std::vector< mitk::DataNode * );`
 
 采用QmitkFunctionality后，一些方法需要进行修改，具体与QmitkAbstractView的对应关系在[这里(待译)](http://www.mitk.org/wiki/ViewsWithoutMultiWidget)可以查看到。有关选择跟踪的内容请参见[这里](http://www.mitk.org/wiki/Article_Using_the_Selection_Service)
 

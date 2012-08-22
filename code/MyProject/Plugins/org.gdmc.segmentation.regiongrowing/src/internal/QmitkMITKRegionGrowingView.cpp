@@ -34,7 +34,7 @@ PURPOSE.  See the above copyright notices for more information.
 
 // ITK
 #include <itkConnectedThresholdImageFilter.h>
-
+#include <itkCommand.h>
 
 const std::string QmitkMITKRegionGrowingView::VIEW_ID = "org.mitk.views.regiongrowing";
 
@@ -63,6 +63,16 @@ void QmitkMITKRegionGrowingView::CreateQtPartControl( QWidget *parent )
   //创建一个新的DataTreeNode使其包含带交互的Pointset
   m_PointSet = mitk::PointSet::New();
 
+  //! Call back called when the user adds a point to the point set with the mouse.
+  
+  typedef itk::SimpleMemberCommand<QmitkMITKRegionGrowingView> MemberCommandType;
+  typedef MemberCommandType::Pointer MemberCommandPointerType;
+  MemberCommandPointerType dataChangedCommand;
+  dataChangedCommand = MemberCommandType::New();
+  dataChangedCommand->SetCallbackFunction( this, &QmitkMITKRegionGrowingView::UpdateLowerAndUpper );
+  m_OnPointSetAddEventObserverTag = m_PointSet->AddObserver( mitk::PointSetAddEvent(), dataChangedCommand);
+  std::cout << " add event" << std::endl;
+
   mitk::DataNode::Pointer pointSetNode = mitk::DataNode::New();
   pointSetNode->SetData(m_PointSet);
   pointSetNode->SetName("用作区域增长的种子点");
@@ -75,11 +85,25 @@ void QmitkMITKRegionGrowingView::CreateQtPartControl( QWidget *parent )
   //把GUI控件与点集关联
   lstPoints->SetPointSetNode(pointSetNode); 
 
+  m_Controls.lowerEdit->setText(QString::number((int)(std::numeric_limits<int>::max()), 10));
+  m_Controls.upperEdit->setText(QString::number((int)(std::numeric_limits<int>::min()), 10));
+
   connect( m_Controls.buttonPerformImageProcessing, SIGNAL(clicked()), this, SLOT(DoImageProcessing()) );
+  // connect( lstPoints, SIGNAL(PointListChanged()), this, SLOT(UpdateLowerAndUpper()) );
+
+  
+  
 }
 
-void QmitkMITKRegionGrowingView::OnSelectionChanged( berry::IWorkbenchPart::Pointer /*source*/,
-                                             const QList<mitk::DataNode::Pointer>& nodes )
+QmitkMITKRegionGrowingView::~QmitkMITKRegionGrowingView( )
+{
+	if ( m_PointSet.IsNotNull() )
+	{
+		m_PointSet->RemoveObserver( m_OnPointSetAddEventObserverTag );
+	}
+}
+
+void QmitkMITKRegionGrowingView::OnSelectionChanged( std::vector< mitk::DataNode * > nodes )
 { 
   // iterate all selected objects, adjust warning visibility
   foreach( mitk::DataNode::Pointer node, nodes )
@@ -88,6 +112,17 @@ void QmitkMITKRegionGrowingView::OnSelectionChanged( berry::IWorkbenchPart::Poin
     {
       m_Controls.labelWarning->setVisible( false );
       m_Controls.buttonPerformImageProcessing->setEnabled( true );
+	  /*mitk::BaseData* data = node->GetData();
+	  if (data)
+	  {
+		mitk::Image* image = dynamic_cast<mitk::Image*>( data );
+		if (image)
+		{
+			m_Controls.lowerEdit->setText(QString::number((int)(image->GetScalarValueMin()), 10));
+			m_Controls.upperEdit->setText(QString::number((int)(image->GetScalarValueMax()), 10));
+		}
+	  }*/
+	  UpdateLowerAndUpper();
       return;
     }
   }
@@ -158,6 +193,80 @@ void QmitkMITKRegionGrowingView::DoImageProcessing()
   }
 }
 
+void QmitkMITKRegionGrowingView::UpdateLowerAndUpper()
+{
+  std::vector<mitk::DataNode*> nodes = this->GetDataManagerSelection();
+  if (nodes.empty())  return;
+  std::cout << "Update Lower and Upper" << std::endl;
+   mitk::DataNode* node = nodes.front();
+
+    if (!node)
+  {
+    // Nothing selected. Inform the user and return
+    QMessageBox::information( NULL, "Template", "Please load and select an image before starting image processing.");
+    return;
+  }
+	
+  // here we have a valid mitk::DataNode
+
+  // a node itself is not very useful, we need its data item (the image)
+  mitk::BaseData* data = node->GetData();
+  int min = std::numeric_limits<int>::max(), max=std::numeric_limits<int>::min();
+  std::cout << "min: " << min << std::endl;
+  std::cout << "max: " << max << std::endl;
+  if (data)
+  {
+    // test if this data item is an image or not (could also be a surface or something totally different)
+    mitk::Image* image = dynamic_cast<mitk::Image*>( data );
+    if (image)
+    {
+	  mitk::Geometry3D* imageGeometry = image->GetGeometry();
+	  mitk::PointSet::PointsContainer* points = m_PointSet->GetPointSet()->GetPoints();
+	  for ( mitk::PointSet::PointsConstIterator pointsIterator = points->Begin(); 
+			pointsIterator != points->End();
+			++pointsIterator )
+	  {
+			// first test if this point is inside the image at all
+			if ( !imageGeometry->IsInside( pointsIterator.Value()) ) 
+			{
+			  continue;
+			}
+
+			// "GetPixel" method is already available. 
+
+			// double mitk::Image::GetPixelValueByIndex(const mitk::Index3D &position, unsigned int timestep)
+
+			// double mitk::Image::GetPixelValueByWorldCoordinate(const mitk::Point3D& position, unsigned int timestep)
+
+			int currentPixelValue = image->GetPixelValueByWorldCoordinate(pointsIterator.Value(), 0);
+			std::cout << "currentPixelValue: " << currentPixelValue << std::endl;
+			// adjust minimum and maximum values
+			if (currentPixelValue > max)
+			  max = currentPixelValue;
+
+			if (currentPixelValue < min)
+			  min = currentPixelValue;
+			// convert world coordinates to image indices
+			std::cout << "min: " << min << std::endl;
+			std::cout << "max: " << max << std::endl;
+			
+	  }
+	  if (m_PointSet->GetSize()>0)
+	  {
+		  min -= 30;
+		  max += 30;
+		 
+		  m_Controls.lowerEdit->setText(QString::number((int)(min), 10));
+		  m_Controls.upperEdit->setText(QString::number((int)(max), 10));
+	  }else{
+		  m_Controls.lowerEdit->setText(QString::number((int)(image->GetScalarValueMin()), 10));
+		  m_Controls.upperEdit->setText(QString::number((int)(image->GetScalarValueMax()), 10));
+	  }
+	 
+	}
+  }
+}
+
 template < typename TPixel, unsigned int VImageDimension >
 void QmitkMITKRegionGrowingView::ItkImageProcessing( itk::Image< TPixel, VImageDimension >* itkImage, mitk::Geometry3D* imageGeometry )
 {
@@ -205,9 +314,15 @@ void QmitkMITKRegionGrowingView::ItkImageProcessing( itk::Image< TPixel, VImageD
   min -= 30;
   max += 30;
 
-  // set thresholds and execute filter
-  regionGrower->SetLower( min );
-  regionGrower->SetUpper( max );
+  if (m_Controls.lowerEdit->text().toInt()<m_Controls.upperEdit->text().toInt()) {
+	 regionGrower->SetLower( m_Controls.lowerEdit->text().toInt() );
+	 regionGrower->SetUpper( m_Controls.upperEdit->text().toInt() );
+	 std::cout << "Use m_Controls" << std::endl;
+  }else{
+	  // set thresholds and execute filter
+	  regionGrower->SetLower( min );
+	  regionGrower->SetUpper( max );
+  }
 
   regionGrower->Update();
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>222</width>
-    <height>161</height>
+    <height>158</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,17 +26,67 @@
       <string notr="true">QLabel { color: rgb(255, 0, 0) }</string>
      </property>
      <property name="text">
-      <string>Please select an image!</string>
+      <string>请选择一张图！</string>
      </property>
     </widget>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="lowerLabel">
+       <property name="text">
+        <string>下限:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lowerEdit">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Hu</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="upperLabel">
+       <property name="text">
+        <string>上限:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="upperEdit">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Hu</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QPushButton" name="buttonPerformImageProcessing">
      <property name="toolTip">
-      <string>Do image processing</string>
+      <string>执行区域增长分割算法</string>
      </property>
      <property name="text">
-      <string>Do Something</string>
+      <string>区域增长</string>
      </property>
     </widget>
    </item>
@@ -50,8 +100,8 @@
      </property>
      <property name="sizeHint" stdset="0">
       <size>
-       <width>20</width>
-       <height>220</height>
+       <width>201</width>
+       <height>34</height>
       </size>
      </property>
     </spacer>
